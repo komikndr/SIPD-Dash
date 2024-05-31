@@ -1,4 +1,4 @@
-import GraphContainer from "./graphContainer";
+import PieChart from "../graph_list/pie_chart";
 
 export default function Main() {
   return (
@@ -12,7 +12,7 @@ export default function Main() {
         className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm"
         x-chunk="dashboard-02-chunk-1"
       >
-        <GraphContainer></GraphContainer>
+        <PieChart/>
         <div className="flex flex-col items-center gap-1 text-center">
         </div>
       </div>

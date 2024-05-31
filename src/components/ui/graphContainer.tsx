@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import React from 'react';
 import { Data, Layout } from 'plotly.js';
+import fetchDataFromOpenSearch from '@/lib/opensearch';
 
 const Plot = dynamic(() => import('react-plotly.js'), { ssr: false });
 
