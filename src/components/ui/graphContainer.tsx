@@ -1,35 +1,24 @@
-"use client"
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
-import dynamic from 'next/dynamic';
-import React from 'react';
-import { Data, Layout } from 'plotly.js';
-import fetchDataFromOpenSearch from '@/lib/opensearch';
+import PieChart from "../graph_list/pie_chart";
 
-const Plot = dynamic(() => import('react-plotly.js'), { ssr: false });
-
-const GraphContainer: React.FC = () => {
-  const data: Data[] = [
-    {
-      x: [1, 2, 3, 4],
-      y: [10, 15, 13, 17],
-      type: 'scatter',
-      mode: 'lines+markers',
-      marker: { color: 'red' },
-    },
-    {
-      type: 'bar',
-      x: [1, 2, 3, 4],
-      y: [12, 9, 15, 12],
-    },
-  ];
-
-  const layout: Partial<Layout> = {
-    width: 800,
-    height: 400,
-    title: 'A Fancy Plot',
-  };
-
-  return <Plot data={data} layout={layout} />;
-};
-
-export default GraphContainer;
+export default function GraphContainer() {
+  return (
+    <Card x-chunk="dashboard-07-chunk-3">
+      <CardHeader>
+        <CardTitle>Product Status</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="grid gap-6">
+          <div className="grid gap-3">
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}

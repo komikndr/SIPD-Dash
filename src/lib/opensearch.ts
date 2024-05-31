@@ -1,9 +1,5 @@
 "use server"
 import { Client } from "@opensearch-project/opensearch";
-import dotenv from 'dotenv';
-
-dotenv.config();
-
 // I am to lazy to compose type checking for zod for now
 // interface QueryBody {
 //   aggs: {
@@ -34,8 +30,8 @@ export default async function fetchDataFromOpenSearch(indexPattern: string, quer
   const host = "onyxmaster01-poc.onyx.id";
   const protocol = "https";
   const port = 9220;
-  const username = "adminpoc"
-  const password = "admin@2024";
+  const username = process.env.OPENSEARCH_USERNAME
+  const password = process.env.OPENSEARCH_PASSWORD
 
   if (!username || !password) {
     throw new Error("Username or password not provided in environment variables");

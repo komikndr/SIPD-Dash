@@ -1,13 +1,13 @@
-"use client"
-import dynamic from 'next/dynamic';
-import React, { useEffect, useState } from 'react';
-import { Data, Layout } from 'plotly.js';
-import fetchDataFromOpenSearch from '@/lib/opensearch';
+"use client";
+import dynamic from "next/dynamic";
+import React, { useEffect, useState } from "react";
+import { Data, Layout } from "plotly.js";
+import fetchDataFromOpenSearch from "@/lib/opensearch";
 
 // Dynamic import for Plot component
-const Plot = dynamic(() => import('react-plotly.js'), { ssr: false });
+const Plot = dynamic(() => import("react-plotly.js"), { ssr: false });
 
-const indexPattern = 'klaster_alert1*';
+const indexPattern = "klaster_alert1*";
 const queryBody = {
   aggs: {
     2: {
@@ -41,12 +41,12 @@ const queryBody = {
   },
 };
 
-const PieChart: React.FC = () => {
+const BarChart: React.FC = () => {
   const [data, setData] = useState<Data[]>([]);
   const [layout, setLayout] = useState<Partial<Layout>>({
     width: 800,
     height: 400,
-    title: 'Pie Plot 1',
+    title: "Bar Plot 1",
   });
 
   // Fetch data from OpenSearch on component mount
@@ -55,16 +55,26 @@ const PieChart: React.FC = () => {
       try {
         const result = await fetchDataFromOpenSearch(indexPattern, queryBody);
 
-        const buckets = result.aggregations["2"].buckets;
-        const plotData: Data[] = [
-          {
-            type: 'pie',
-            labels: buckets.map((bucket: any) => bucket.key),
-            values: buckets.map((bucket: any) => bucket.doc_count),
-          },
-        ];
-
-        setData(plotData);
+        if (result != null) {
+          const buckets = result.aggregations["2"].buckets;
+          const plotData: Data[] = [
+            {
+              type: "bar",
+              labels: buckets.map((bucket: any) => bucket.key),
+              values: buckets.map((bucket: any) => bucket.doc_count),
+              hole: 0.55,
+            },
+          ];
+          setData(plotData);
+        } else {
+          const plotData: Data[] = [
+            {
+              type: "pie",
+              values: [0],
+            },
+          ];
+          setData(plotData);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -76,4 +86,4 @@ const PieChart: React.FC = () => {
   return <Plot data={data} layout={layout} />;
 };
 
-export default PieChart;
+export default BarChart;

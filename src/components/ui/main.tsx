@@ -1,4 +1,6 @@
 import PieChart from "../graph_list/pie_chart";
+import BarChart from "../graph_list/bar_chart";
+import GraphContainer from "./graphContainer";
 
 export default function Main() {
   return (
@@ -8,13 +10,10 @@ export default function Main() {
       </div>
 
       {/* This is the main Body of the dashBoard */}
-      <div
-        className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm"
-        x-chunk="dashboard-02-chunk-1"
-      >
-        <PieChart/>
-        <div className="flex flex-col items-center gap-1 text-center">
-        </div>
+          <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
+            <div className="flex-wrap gap-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+              <PieChart></PieChart>
+            </div>
       </div>
     </main>
   );
