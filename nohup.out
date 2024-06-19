@@ -1,0 +1,25 @@
+
+> sipd-dash@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.3
+  - Local:        http://localhost:3000
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1182ms
+[?25h
+
+> sipd-dash@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.3
+  - Local:        http://localhost:3000
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1168ms
+ ○ Compiling / ...
+ ✓ Compiled / in 2.1s (864 modules)
+ GET / 200 in 2380ms
+ ✓ Compiled in 211ms (356 modules)

@@ -1,18 +1,20 @@
 module.exports = {
-  apps : [{
-    script: 'npm start',
-  }],
-
-  deploy : {
-    production : {
-      user : 'microsite',
-      host : '103.56.93.6',
-      ref  : 'origin/master',
-      repo : 'https://github.com/komikndr/SIPD-Dash',
-      path : '/home/microsite',
-      'pre-deploy-local': '',
-      'post-deploy' : 'source ~/.nvm/nvm.sh && npm install && npm run build && pm2 reload ecosystem.config.js --env production',
-      'pre-setup': ''
+  apps: [
+    {
+      name: 'NextAppName',
+      exec_mode: 'cluster',
+      instances: 'max', // Or a number of instances
+      script: 'node_modules/next/dist/bin/next',
+      args: 'start',
+      env_local: {
+        APP_ENV: 'local' // APP_ENV=local
+      },
+      env_dev: {
+        APP_ENV: 'dev' // APP_ENV=dev
+      },
+      env_prod: {
+        APP_ENV: 'prod' // APP_ENV=prod
+      }
     }
-  }
-};
+  ]
+}
